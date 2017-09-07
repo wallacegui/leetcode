@@ -1,6 +1,4 @@
-/×
-=======================================================================
-
+/*
 There are two sorted arrays nums1 and nums2 of size m and n respectively.
 
 Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
@@ -16,7 +14,7 @@ nums2 = [3, 4]
 
 The median is (2 + 3)/2 = 2.5
 
-×/
+*/
 
 def findK(arrayA:Array[Int],startA:Int,arrayB:Array[Int],startB:Int,K:Int) :Int = {
     if(arrayA.length-startA>arrayB.length-startB){
