@@ -12,7 +12,6 @@ return 4->5->1->2->3->NULL.
     var x: Int = _x
     override def toString = x + " --> " + next;
  }
-
 def rotateRight(head: ListNode, k: Int): ListNode = {
     if(head==null || k<=0) return head;
     var end=head;
@@ -21,33 +20,20 @@ def rotateRight(head: ListNode, k: Int): ListNode = {
         end = end.next;
         n +=1;
     }
-    var j = n-(k%n);
-    var newHead=head;
-    for(i<-2 to n-k){
-        newHead=newHead.next;
+    var j = k%n;
+    if(j==0) {
+        return head;
+    }else{
+        var newHead=head;
+        for(i<-2 to n-j){
+            newHead=newHead.next;
+        }
+        end.next=head;
+        end = newHead;
+        var result= newHead.next;
+        end.next = null;
+        return result;
     }
-    end.next=head;
-    end = newHead;
-    var result= newHead.next;
-    end.next = null;
-    return result;
-}
-
-def rotateRight(head: ListNode, k: Int): ListNode = {
-    if(head==null || k<=0) return head;
-    var end=head;
-    var n = 1;
-    while(end.next!=null){
-        end = end.next;
-        n +=1;
-    }
-    end.next = head;
-    for(i<- 0 to n-k%n-1){
-        end = end.next;
-    }
-    var newHead = end.next;
-    end.next = null;
-    return newHead;
 }
 
 val n1 = new ListNode(1)
