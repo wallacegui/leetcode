@@ -1,0 +1,18 @@
+/*
+A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+
+The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
+
+How many possible unique paths are there?
+*/
+
+def uniquePaths(m: Int, n: Int): Int = {
+    if(m==0||n==0) return 0;
+    var mark = Array.ofDim[Int](m,n);
+    for(i<-0 to m-1) mark(i)(0)=1;
+    for(i<-0 to n-1) mark(0)(i)=1;
+    for(i<-1 to m-1)
+        for(j<-1 to n-1) 
+        mark(i)(j) =mark(i-1)(j)+mark(i)(j-1);
+    mark(m-1)(n-1)        
+}
