@@ -1,0 +1,33 @@
+/×
+Given numRows, generate the first numRows of Pascal's triangle.
+
+For example, given numRows = 5,
+Return
+
+[
+     [1],
+    [1,1],
+   [1,2,1],
+  [1,3,3,1],
+ [1,4,6,4,1]
+]
+
+×/
+
+    def generate(numRows: Int): List[List[Int]] = {
+        if(numRows<=0) return List();
+        var result = scala.collection.mutable.ArrayBuffer[List[Int]]();
+        for(i<- 1 to numRows){
+            var line = new Array[Int](i);
+            line(0) = 1;
+            line(i-1) = 1;
+            for(j<- 1 to i-2){
+                line(j)=result(i-2)(j-1)+result(i-2)(j)
+            }
+            result += line.toList;
+        }
+        result.toList 
+    }
+    generate(1)
+    generate(2)
+    generate(3)
