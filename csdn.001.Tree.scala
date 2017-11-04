@@ -84,3 +84,47 @@ def postOrder(root:TreeNode):Unit = {
         }
     }
 }
+
+
+
+//最近公共祖先
+def findPath(root:TreeNode,node:TreeNode):Array[TreeNode] = {
+    val stack = new scala.collection.mutable.Stack[TreeNode]();
+    stack.push(root);
+    var pre:TreeNode =null;
+    while(!stack.isEmpty){
+        println(stack.toList.reverse);
+        val top = stack.top;
+        val right=top.right;
+        val left = top.left;
+        if((left==null && right ==null) ||
+           (right!=null && pre==right) ||
+           (right==null && pre==left)){
+            if(top==node) return stack.toArray.reverse;
+            stack.pop();
+            pre = top;
+            println(top);
+        }else{
+            if(left!=null&&pre!=left) stack.push(left);
+            if((left==null || (left!=null &&pre==left))&&(right!=null)){
+                stack.push(right);
+            }
+        }
+    }
+    return Array()
+}
+
+def findCommonParent(root:TreeNode,node1:TreeNode,node2:TreeNode):TreeNode = {
+    if(root==null || node1==null || node2==null) return null;
+    val fstPath = findPath(root,node1);
+    val sndPath = findPath(root,node2);
+    if(fstPath.length<=0 && sndPath.length<=0) return null;
+    var result: TreeNode= null;
+    var i = 0;
+    while(i<math.min(fstPath.length,sndPath.length)){
+      if(fstPath(i)!=sndPath(i)) return result;
+      result = fstPath(i);
+      i+=1;
+    }
+    return result;
+}
