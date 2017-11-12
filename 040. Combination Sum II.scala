@@ -24,7 +24,7 @@ def combinationSumImp(candidates: Array[Int], index:Int,target: Int,
     }
     if(index<candidates.length && target>0){
         for(i<- index to candidates.length-1){
-            if(i==0 || candidates(i)!=candidates(i-1) || (stack.size>0 && stack.top==candidates(i))){
+            if(i==0 || candidates(i)!=candidates(i-1) || (stack.size>0 && stack.top==candidates(i))){//前一个放了你才能放，不放的话都不放
                 stack.push(candidates(i));
                 combinationSumImp(candidates,i+1,target-candidates(i),stack,result)
                 stack.pop()   
